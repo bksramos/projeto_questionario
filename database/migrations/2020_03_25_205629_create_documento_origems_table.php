@@ -16,6 +16,7 @@ class CreateDocumentoOrigemsTable extends Migration
         Schema::create('documento_origems', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descricao');
+            $table->engine = 'InnoDB';
         });
     }
 

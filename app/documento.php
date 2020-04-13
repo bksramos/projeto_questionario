@@ -4,21 +4,30 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class documento extends Model
+class Documento extends Model
 {
     protected $guarded = [];
 
-    public function documento_origems()
+    public function documentoOrigems()
     {
-    	return $this->hasOne('App\documento_origem');
+    	return $this->hasOne(DocumentoOrigem::class, 'id', 'documento_origem_id');
     }
 
-    public function documento_tipos()
+    public function documentoTipos()
     {
-    	return $this->hasOne('App\documento_tipo');
+    	return $this->hasOne(DocumentoTipo::class, 'id', 'documento_tipo_id');
     }
-    public function orgao_emissors()
+    public function orgaoEmissors()
     {
-    	return $this->hasOne('App\orgao_emissor');
+    	return $this->hasOne(OrgaoEmissor::class, 'id', 'orgao_emissor_id');
+    }
+    public function questaos()
+    {
+        return $this->belongsToMany(Questao::class)->withTimestamps();
+    }
+
+    public function respostas()
+    {
+        return $this->hasMany(Resposta::class)->withTimestamps();
     }
 }

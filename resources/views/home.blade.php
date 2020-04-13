@@ -14,12 +14,12 @@
                         </div>
                     @endif
                     <br>
-                    <a href="/questionarios/create" class="btn btn-primary">Adicionar Documento</a>
+                    <a href="/documentos/add" class="btn btn-primary">Adicionar Documento</a>
                     <br><br><br>
-                    <a href="/questionarios/create" class="btn btn-primary">Responder Avaliação</a>
+                    <a href="/documentos/responder" class="btn btn-primary">Responder Avaliação</a>
                     <br><br><br>
-                    <a href="/questionarios/create" class="btn btn-primary">Editar Avaliação</a>
-                    
+                    <a href="/documentos/editar" class="btn btn-primary">Editar Avaliação</a>
+
                 </div>
             </div>
         </div>

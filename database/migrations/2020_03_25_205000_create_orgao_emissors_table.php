@@ -17,7 +17,8 @@ class CreateOrgaoEmissorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('grande_comando');
-            $table->string('sigla');
+            $table->string('estado');
+            $table->string('pais');
             $table->engine = 'InnoDB';
         });
     }

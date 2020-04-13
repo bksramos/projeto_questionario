@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\documento;
+use App\Questao;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,21 +17,37 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 
-    $user = \App\User::first();
-    $roles = \App\role::all();
 
-    $user ->roles()->sync($roles);
-    dd($roles);
 });
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::get('/dashboard', function(){
+    return view('layouts.master');
+})->middleware(['auth', 'admin']);
+
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function(){
+    Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
+});
+
 
 Route::get('/questionarios/create', 'QuestionarioController@create');
 Route::post('/questionarios', 'QuestionarioController@store');
 Route::get('/questionarios', 'QuestionarioController@select_doc');
 
+Route::get('/documentos/add', 'DocumentoController@add');
+Route::get('/documentos/add', 'DocumentoController@addDocuments');
+Route::post('/documentos/add', 'DocumentoController@store');
+Route::get('/documentos/add/{documento}', 'DocumentoController@show');
 
+Route::get('/documentos/responder', 'ResponderController@responder');
+Route::get('/documentos/responder', 'ResponderController@responderDoc');
 
-
+//Route::get('/perguntas/{documentos}-{slug}', 'PerguntaController@perguntar');
+//Route::get('/perguntas/{documentos}-{slug}', 'PerguntaController@create');
+Route::get('/perguntas/{documentos}-{slug}', 'PerguntaController@show');
+Route::post('/perguntas/{documentos}-{slug}', 'PerguntaController@store');

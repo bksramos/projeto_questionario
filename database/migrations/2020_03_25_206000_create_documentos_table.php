@@ -14,12 +14,14 @@ class CreateDocumentosTable extends Migration
     public function up()
     {
         Schema::create('documentos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('code');
+            $table->id('id');
+            $table->string('code')->unique();
+            $table->string('title');
             $table->UnsignedBigInteger('documento_origem_id');
             $table->UnsignedBigInteger('documento_tipo_id');
             $table->UnsignedBigInteger('orgao_emissor_id');
             $table->UnsignedBigInteger('user_id');
+            $table->date('data');
             $table->timestamps();
             $table->engine = 'InnoDB';
 
