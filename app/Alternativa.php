@@ -10,11 +10,11 @@ class Alternativa extends Model
 
     public function questaos()
     {
-    	return $this->belongsToMany('App\Questao');
+    	return $this->belongsTo('App\Questao');
     }
 
-    public function respostas()
-    {
-        return $this->hasMany('App\Resposta');
-    }
+//    public function respostas()
+//    {
+//        return $this->hasMany('App\Resposta');
+//    }
 }

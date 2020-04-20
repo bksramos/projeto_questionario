@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Resposta;
+use App\Status;
 use Illuminate\Http\Request;
 use App\Documento;
 use App\Questao;
 use App\Alternativa;
+use DB;
 
 class PerguntaController extends Controller
 {
@@ -17,35 +20,69 @@ class PerguntaController extends Controller
         return view('pergunta.show', compact('relations', 'documento', 'alternativas'));
     }
 
-    /*public function create()
+    public function store(Documento $documento, $id, $slug)
     {
-        $documentos = Documento::all();
-        $questaos = Questao::all();
-        //dd($documentos);
-        return view('pergunta.show', compact('documentos', 'questaos'));
-    }
-
-    public function show(documento $documentos, $questaos)
-    {
-        return view('pergunta.show', compact('questaos'));
-        //dd($questaoCategorias);
-    }*/
-
-    public function store(Alternativa $alternativa, $slug)
-    {
-        //dd(request()->all());
+//        dd(request()->all());
         $data = request()->validate([
-           'respostas.*.id' => 'required',
+           'respostas.*.documento_id' => 'required',
            'respostas.*.questao_id' => 'required',
            'respostas.*.alternativa_id' => 'required',
            'respostas.*.user_id' => 'required',
+           'respostas.*.created_at' => 'required',
+           'respostas.*.updated_at' => 'required',
+//           'survey.*.comantario1' => 'required',
+//           'survey.*.comentario2' => 'required',
+//           'survey.*.created_at' => 'required',
+//           'survey.*.updated_at' => 'required',
         ]);
+//        dd($data);
+        $resposta = $documento->respostas()->insert($data['respostas']);
+        $documento = Documento::find($id);
+        $documento->statuses()->sync([2]);
 
-        $resposta = $alternativa->respostas()->createMany($data['respostas']);
-        $resposta->save();
-        return 'Thank you infeliz';
+        return redirect('/perguntas/finish');
+    }
+
+    public function finish(Documento $documento)
+    {
+        return view('pergunta.finish', compact('documento'));
+    }
+
+    public function editar(Documento $documento, $slug)
+    {
+        $documento = \App\Documento::find($slug);
+        $alternativas = \App\Alternativa::all();
+        $relations = $documento->questaos->first()->pivot;
+        return view('pergunta.editar', compact('relations', 'documento', 'alternativas'));
+    }
+
+    public function update(Documento $documento, $documento_id, $slug)
+    {
+//        dd(request()->all());
+        $data = request()->validate([
+            'respostas.*.documento_id' => 'required',
+            'respostas.*.questao_id' => 'required',
+            'respostas.*.alternativa_id' => 'required',
+            'respostas.*.user_id' => 'required',
+            'respostas.*.created_at' => 'required',
+            'respostas.*.updated_at' => 'required',
+//           'survey.*.comantario1' => 'required',
+//           'survey.*.comentario2' => 'required',
+//           'survey.*.created_at' => 'required',
+//           'survey.*.updated_at' => 'required',
+        ]);
+//        dd($data);
+        $delete = DB::table('respostas')
+                        ->whereIn('documento_id', [$documento_id])
+                        ->delete();
+        $resposta = $documento->respostas()->insert($data['respostas']);
+
+
+        return redirect('/perguntas/editado');;
+    }
+
+    public function editado(Documento $documento)
+    {
+        return view('pergunta.editado', compact('documento'));
     }
 }
-//$data['user_id'] = auth()->user()->id;
-//$data['documento_id'] = request('documento_id');
-

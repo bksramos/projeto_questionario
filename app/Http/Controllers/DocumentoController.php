@@ -22,6 +22,21 @@ class DocumentoController extends Controller
     	return view('documento.add');
     }
 
+    public function edit()
+    {
+        $documentos = Documento::all();
+        $documentos = DB::table('documentos')
+                                ->join('documento_status', 'documentos.id', '=', 'documento_status.documento_id')
+                                ->join('documento_tipos', 'documentos.documento_tipo_id', '=', 'documento_tipos.id' )
+                                ->join('documento_origems', 'documentos.documento_origem_id', '=', 'documento_origems.id')
+                                ->join('users', 'documentos.user_id', '=', 'users.id')
+                                ->select('documentos.*', 'documento_status.status_id', 'documento_tipos.descricao as tipo',
+                                         'documento_origems.descricao', 'users.name')
+                                ->paginate(10);
+//        dd($documentos);
+        return view('documento.edit', compact('documentos'));
+    }
+
     public function addDocuments()
     {
     	$documentos = Documento::paginate(10);
@@ -65,6 +80,8 @@ class DocumentoController extends Controller
         $last_insert_id = DB::getPdo()->lastInsertId();
         $documentos = documento::find($last_insert_id);
         $documentos->questaos()->sync([1,2,3,4,5,6]);
+        $documentos->statuses()->attach([1]);
+
 
 
         return redirect('/documentos/add/'.$documentos->id);

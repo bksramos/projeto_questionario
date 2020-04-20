@@ -28,6 +28,16 @@ class Documento extends Model
 
     public function respostas()
     {
-        return $this->hasMany(Resposta::class)->withTimestamps();
+        return $this->hasMany(Resposta::class);
+    }
+
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class);
+    }
+
+    public function statuses()
+    {
+        return $this->belongsToMany(Status::class)->withPivot('documento_id', 'status_id')->withTimestamps();
     }
 }

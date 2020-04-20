@@ -1,58 +1,94 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Documentos a serem avaliados</div><br>
 
-                <div class="card-body">
-                    <form action="/questionarios" method="post"></form>
-
-                        @csrf
-
-                        <div class="form-group">
-                        <label for="title">Documento</label>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                
-                                        <th>Codigo</th>
-                                        <th>Tipo</th>
-                                        <th>Origem</th>
-                                        <th>Usuario</th>
-                                        <th>Criado em</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($documentos as $documento)
-                                    <tr>
-                                      
-                                        <td>{{$documento->code}}</td>
-                                        <td>{{$documento->documento_tipos->descricao}}</td>
-                                        <td>{{$documento->documento_origem_id}}</td>
-                                        <td>{{$documento->user_id}}</td>
-                                        <td>{{$documento->created_at}}</td>
-                                        <td>
-                                        <button type="button" class="btn btn-success">Avaliar</button>
-                                        </td>
-                                    </tr>  
-                                    @endforeach    
-                                </tbody>
-                            </table>
-                            
-                           <!-- @error('title')-->
-                            <!--    <small class="text-danger">{{ $message }}</small>-->
-                           <!--@enderror--> 
-                            {{$documentos->links()}}
-                        </div>
-
-                        <!-- <button type="submit" class="btn btn-primary">Avaliar Documento</button> -->
-                </div>
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-file-text-o"></i> Documentos </h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="/dashboard">Início</a></li>
+                        <li><i class="icon_document_alt"></i>Documentos</li>
+                        <li><i class="fa fa-file-text-o"></i>Editar Documentos</li>
+                    </ol>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Documentos Já Avaliados
+                        </header>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="card">
+                                        {{--                        Início do Conteúdo da Página--}}
+
+                                        <div class="card-body">
+                                            <form action="/documentos/editar" method="post">
+
+                                                @csrf
+
+                                                <div class="form-group">
+                                                    <br>
+
+                                                    <table class="table table-striped w-auto">
+                                                        <thead>
+                                                        <tr>
+
+                                                            <th style="text-align:center">Codigo</th>
+                                                            <th style="text-align:center">Título</th>
+                                                            <th style="text-align:center">Tipo</th>
+                                                            <th style="text-align:center">Origem</th>
+                                                            <th style="text-align:center">Usuario</th>
+                                                            <th style="text-align:center">Criado em</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            @foreach($documentos as $documento)
+                                                                @if($documento->status_id == '2')
+                                                                <tr>
+
+                                                                    <td style="vertical-align: middle">{{$documento->code}}</td>
+                                                                    <td style="vertical-align: middle">{{$documento->title}}</td>
+                                                                    <td style="vertical-align: middle">{{$documento->tipo}}</td>
+                                                                    <td style="vertical-align: middle">{{$documento->descricao}}</td>
+                                                                    <td style="vertical-align: middle">{{$documento->name}}</td>
+                                                                    <td style="vertical-align: middle">{{$documento->created_at}}</td>
+                                                                    <td style="vertical-align: middle">
+                                                                        <a href="/editar/{{$documento->id}}-{{ Str::slug($documento->title)}}" class="btn btn-success">Editar Avaliação</a>
+                                                                    </td>
+                                                                </tr>
+                                                                @endif
+                                                            @endforeach
+
+                                                        </tbody>
+                                                    </table>
+                                                    <small id="select_docHelp" class="form-text text-muted">Escolha um documento.</small>
+
+{{--                                                <!-- @error('title')-->--}}
+{{--                                                <!--    <small class="text-danger">{{ $message }}</small>-->--}}
+{{--                                                    <!--@enderror-->--}}
+                                                    {{$documentos->links()}}
+                                                </div>
+
+                                                <!-- <button type="submit" class="btn btn-primary">Avaliar Documento</button> -->
+                                            </form>
+                                            {{--                                            @endif--}}
+                                            {{--                                            @endforeach--}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+        </section>
         </div>
-    </div>
-</div>
+        </div>
+        <!-- page end-->
+    </section>
+    </section>
 @endsection

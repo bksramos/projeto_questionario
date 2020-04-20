@@ -40,6 +40,7 @@ Route::post('/questionarios', 'QuestionarioController@store');
 Route::get('/questionarios', 'QuestionarioController@select_doc');
 
 Route::get('/documentos/add', 'DocumentoController@add');
+Route::get('/documentos/editar', 'DocumentoController@edit');
 Route::get('/documentos/add', 'DocumentoController@addDocuments');
 Route::post('/documentos/add', 'DocumentoController@store');
 Route::get('/documentos/add/{documento}', 'DocumentoController@show');
@@ -51,3 +52,12 @@ Route::get('/documentos/responder', 'ResponderController@responderDoc');
 //Route::get('/perguntas/{documentos}-{slug}', 'PerguntaController@create');
 Route::get('/perguntas/{documentos}-{slug}', 'PerguntaController@show');
 Route::post('/perguntas/{documentos}-{slug}', 'PerguntaController@store');
+Route::get('/editar/{documentos}-{slug}', 'PerguntaController@editar');
+Route::post('/update/{documentos}-{slug}', 'PerguntaController@update');
+
+Route::get('/perguntas/finish', 'PerguntaController@finish');
+Route::get('/perguntas/editado', 'PerguntaController@editado');
+
+Route::get('/indicadores/geral', 'IndicadorController@general');
+Route::get('/indicadores/organization', 'IndicadorController@organization');
+Route::get('/indicadores/knowledge', 'IndicadorController@knowledge');

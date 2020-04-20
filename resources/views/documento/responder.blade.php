@@ -22,9 +22,10 @@
                         </header>
                         <div class="container">
                             <div class="row">
-                                <div class="col-xs-8">
+                                <div class="col-xs-12">
                                     <div class="card">
 {{--                        Início do Conteúdo da Página--}}
+
                                         <div class="card-body">
                                             <form action="/documentos/responder" method="post">
 
@@ -32,45 +33,48 @@
 
                                                 <div class="form-group">
                                                     <br>
-                                                    <table class="table table-bordered">
+                                                    <table class="table table-striped w-auto">
                                                         <thead>
                                                         <tr>
 
-                                                            <th>Codigo</th>
-                                                            <th>Título</th>
-                                                            <th>Tipo</th>
-                                                            <th>Origem</th>
-                                                            <th>Usuario</th>
-                                                            <th>Criado em</th>
+                                                            <th style="text-align:center">Codigo</th>
+                                                            <th style="text-align:center">Título</th>
+                                                            <th style="text-align:center">Tipo</th>
+                                                            <th style="text-align:center">Origem</th>
+                                                            <th style="text-align:center">Usuario</th>
+                                                            <th style="text-align:center">Criado em</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         @foreach($documentos as $documento)
+                                                            @if($documento->status_id == '1')
                                                             <tr>
 
-                                                                <td>{{$documento->code}}</td>
-                                                                <td>{{$documento->title}}</td>
-                                                                <td>{{$documento->documento_tipo_id}}</td>
-                                                                <td>{{$documento->documento_origem_id}}</td>
-                                                                <td>{{$documento->user_id}}</td>
-                                                                <td>{{$documento->created_at}}</td>
-                                                                <td>
+                                                                <td style="vertical-align: middle">{{$documento->code}}</td>
+                                                                <td style="vertical-align: middle">{{$documento->title}}</td>
+                                                                <td style="vertical-align: middle">{{$documento->tipo}}</td>
+                                                                <td style="vertical-align: middle">{{$documento->descricao}}</td>
+                                                                <td style="vertical-align: middle">{{$documento->name}}</td>
+                                                                <td style="vertical-align: middle">{{$documento->created_at}}</td>
+                                                                <td style="vertical-align: middle">
                                                                     <a href="/perguntas/{{$documento->id}}-{{ Str::slug($documento->title)}}" class="btn btn-primary">Avaliar Documento</a>
                                                                 </td>
                                                             </tr>
+                                                            @endif
                                                         @endforeach
                                                         </tbody>
                                                     </table>
                                                     <small id="select_docHelp" class="form-text text-muted">Escolha um documento.</small>
 
-                                                <!-- @error('title')-->
-                                                <!--    <small class="text-danger">{{ $message }}</small>-->
-                                                    <!--@enderror-->
+{{--                                                <!-- @error('title')-->--}}
+{{--                                                <!--    <small class="text-danger">{{ $message }}</small>-->--}}
+{{--                                                    <!--@enderror-->--}}
                                                     {{$documentos->links()}}
                                                 </div>
 
                                                 <!-- <button type="submit" class="btn btn-primary">Avaliar Documento</button> -->
                                             </form>
+
                                         </div>
                                     </div>
                                 </div>

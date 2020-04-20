@@ -22,26 +22,26 @@
                         </header>
                         <div class="container">
                             <div class="row">
-                                <div class="col-xs-8">
+                                <div class="col-xs-12">
                                     <div class="card">
                                         {{--                        Início do Conteúdo da Página--}}
                                     <div class="card-body">
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th scope="col">Nome</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Roles</th>
-                                                <th scope="col">Actions</th>
+                                                <th style="text-align:center">Nome</th>
+                                                <th style="text-align:center">Email</th>
+                                                <th style="text-align:center">Roles</th>
+                                                <th style="text-align:center">Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($users as $user)
                                             <tr>
-                                                <th>{{ $user->name }}</th>
-                                                <th>{{ $user->email }}</th>
-                                                <th>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</th>
-                                                <th>
+                                                <th style="text-align:center">{{ $user->name }}</th>
+                                                <th style="text-align:center">{{ $user->email }}</th>
+                                                <th style="text-align:center">{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</th>
+                                                <th style="text-align:center">
                                                     <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
                                                         <button type="button" class="btn btn-primary btn-sm">Editar</button>
                                                     </a>

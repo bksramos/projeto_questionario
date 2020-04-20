@@ -8,18 +8,18 @@ class Resposta extends Model
 {
     protected $guarded = [];
 
+    public function documento()
+    {
+    	return $this->belongsTo(Documento::class)->withTimestamps();
+    }
+
     public function questao()
     {
     	return $this->belongsTo(Questao::class);
     }
 
-//    public function questao()
-//    {
-//    	return $this->belongsTo('App\Questao');
-//    }
-//
     public function alternativas()
     {
-        return $this->belongsToMany('App\Alternativa');
+        return $this->belongsToMany(Alternativa::class);
     }
 }

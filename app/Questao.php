@@ -23,8 +23,4 @@ class Questao extends Model
     	return $this->hasMany('App\Alternativa');
     }
 
-    public function respostas()
-    {
-        return $this->hasMany('App\Resposta')->withTimestamps();
-    }
 }

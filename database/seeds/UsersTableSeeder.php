@@ -18,11 +18,11 @@ class UsersTableSeeder extends Seeder
         $authorRole = Role::where('name', 'author')->first();
         $userRole = Role::where('name', 'user')->first();
 
-//        $brunno = User::create([
-//            'name' => 'Brunno Ramos',
-//            'email' => 'bks_ramos@hotmail.com',
-//            'password' => bcrypt('12345678')
-//        ]);
+        $brunno = User::create([
+            'name' => 'Brunno Ramos',
+            'email' => 'bks_ramos@hotmail.com',
+            'password' => bcrypt('12345678')
+        ]);
 
         $admin = User::create([
             'name' => 'Admin',
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('12345678')
         ]);
 
-        //$brunno->roles()->attach($adminRole);
+        $brunno->roles()->attach($adminRole);
         $author->roles()->attach($authorRole);
         $admin->roles()->attach($adminRole);
 
