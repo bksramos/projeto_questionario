@@ -34,13 +34,13 @@
 </head>
 <body>
         <section id="container" class="">
-        @if (Auth::user()->hasAnyRole('Admin'))
+{{--        @if (Auth::user()->hasAnyRole('admin'))--}}
             @include('layouts.header')
             @include('layouts.sidebar')
             @yield('content')
-        @else
-            @yield('content')
-        @endif
+{{--        @else--}}
+{{--            @yield('content')--}}
+{{--        @endif--}}
         </section>
 
         <!-- javascripts -->

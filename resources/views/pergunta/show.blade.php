@@ -55,38 +55,39 @@
                                             </div>
                                         @endforeach
 
+{{--                                        <div class="card mt-4">--}}
+{{--                                            <div class="card-header"><strong>Comentários</strong></div><br>--}}
 
+{{--                                            <div class="card-body">--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="comentario1">Comentário Questão 1</label>--}}
+{{--                                                    <input name="comentario[comentario1]" type="text" class="form-control" id="comentario1" aria-describedby="comentario1Help" placeholder="Comentário Questão 1">--}}
+{{--                                                    <small id="comentario1Help" class="form-text text-muted"> Comentários do Analista</small>--}}
 
-{{--                                            <div class="card mt-4">--}}
-
-{{--                                                <div class="card-body">--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="comentario1">Comentário Questão 1</label>--}}
-{{--                                                        <input name="survey[comentario1]" type="text" class="form-control" id="comentario1" aria-describedby="comentario1Help" placeholder="Comentário Questão 1">--}}
-{{--                                                        <small id="comentario1Help" class="form-text text-muted"> Comentários do Analista</small>--}}
-
-{{--                                                        @error('comentario1')--}}
-{{--                                                            <small class="text-danger">{{ $message }}</small>--}}
-{{--                                                        @enderror--}}
-{{--                                                    </div>--}}
-
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="comentario2">Comentário Questão 2</label>--}}
-{{--                                                        <input name="survey[comentario2]" type="text" class="form-control" id="comentario2" aria-describedby="comentario2Help" placeholder="Comentário Questão 2">--}}
-{{--                                                        <small id="comentario2Help" class="form-text text-muted"> Comentários do Analista</small>--}}
-
-{{--                                                        @error('comentario2')--}}
-{{--                                                            <small class="text-danger">{{ $message }}</small>--}}
-{{--                                                        @enderror--}}
-{{--                                                    </div>--}}
-
-                                                    <div>
-                                                        <button type="submit" class="btn btn-primary">Responder Avaliação</button>
-                                                    </div>
+{{--                                                    @error('comentario1')--}}
+{{--                                                        <small class="text-danger">{{ $message }}</small>--}}
+{{--                                                    @enderror--}}
 {{--                                                </div>--}}
+
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="comentario2">Comentário Questão 2</label>--}}
+{{--                                                    <input name="comentario[comentario2]" type="text" class="form-control" id="comentario2" aria-describedby="comentario2Help" placeholder="Comentário Questão 2">--}}
+{{--                                                    <input type="hidden" name="comentario[documento_id]" value="{{ $documento->id }}">--}}
+{{--                                                    <input type="hidden" name="comentario[created_at]" value="{{ Carbon\Carbon::now() }}">--}}
+{{--                                                    <input type="hidden" name="comentario[updated_at]" value="{{ Carbon\Carbon::now() }}">--}}
+{{--                                                    <small id="comentario2Help" class="form-text text-muted"> Comentários do Analista</small>--}}
+
+{{--                                                    @error('comentario2')--}}
+{{--                                                        <small class="text-danger">{{ $message }}</small>--}}
+{{--                                                    @enderror--}}
+{{--                                                </div>--}}
+
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary">Responder Avaliação</button>
+                                                </div>
 {{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </form>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

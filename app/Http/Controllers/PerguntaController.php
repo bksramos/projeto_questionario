@@ -30,13 +30,17 @@ class PerguntaController extends Controller
            'respostas.*.user_id' => 'required',
            'respostas.*.created_at' => 'required',
            'respostas.*.updated_at' => 'required',
-//           'survey.*.comantario1' => 'required',
-//           'survey.*.comentario2' => 'required',
-//           'survey.*.created_at' => 'required',
-//           'survey.*.updated_at' => 'required',
+//           'comentario.documento_id' => 'required',
+//           'comentario.comantario1' => 'required',
+//           'comentario.comentario2' => 'required',
+//           'comentario.created_at' => 'required',
+//           'comentario.updated_at' => 'required',
         ]);
 //        dd($data);
+
         $resposta = $documento->respostas()->insert($data['respostas']);
+//        $comentario = $documento->comentarios()->create($data['comentario']);
+
         $documento = Documento::find($id);
         $documento->statuses()->sync([2]);
 

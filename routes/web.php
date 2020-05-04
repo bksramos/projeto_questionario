@@ -28,9 +28,9 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/dashboard', function(){
     return view('layouts.master');
-})->middleware(['auth', 'admin']);
+})->middleware(['auth', 'auth.admin']);
 
-Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function(){
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
     Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
 });
 
@@ -61,3 +61,14 @@ Route::get('/perguntas/editado', 'PerguntaController@editado');
 Route::get('/indicadores/geral', 'IndicadorController@general');
 Route::get('/indicadores/organization', 'IndicadorController@organization');
 Route::get('/indicadores/knowledge', 'IndicadorController@knowledge');
+
+
+Route::get('/teste', 'IndicadorController@nota');
+Route::get('/exemplo', 'IndicadorController@indi');
+Route::get('/indicadores/geral', 'IndicadorController@estatisticas');
+
+Route::get('/diario', 'IndicadorController@diario');
+Route::get('/stats', 'IndicadorController@columnStats');
+
+
+

@@ -31,9 +31,9 @@ class Documento extends Model
         return $this->hasMany(Resposta::class);
     }
 
-    public function surveys()
+    public function comentarios()
     {
-        return $this->hasMany(Survey::class);
+        return $this->hasMany(Comentario::class);
     }
 
     public function statuses()

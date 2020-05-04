@@ -14,27 +14,240 @@
                     </ol>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            Indicador Geral
-                        </header>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-8">
-                                    <div class="card">
-                                        {{--                        Início do Conteúdo da Página--}}
 
-                                    </div>
+            <!--/INÍCIO PRIMEIRA LINHA DE INFORMAÇÕES-->
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    @foreach($informes as $informe)
+                    <div class="info-box blue-bg">
+                        <i class="fa fa-cloud-download"></i>
+                        <div class="count">{{$informe->total}}</div>
+                        <div class="title">Informes</div>
+                    </div>
+                    @endforeach
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    @foreach($informacoes as $informacao)
+                    <div class="info-box brown-bg">
+                        <i class="fa fa-shopping-cart"></i>
+                        <div class="count">{{$informacao->total}}</div>
+                        <div class="title">Informações</div>
+                    </div>
+                    @endforeach
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    @foreach($aprecs as $aprec)
+                    <div class="info-box dark-bg">
+                        <i class="fa fa-thumbs-o-up"></i>
+                        <div class="count">{{$aprec->total}}</div>
+                        <div class="title">Apreciações</div>
+                    </div>
+                    @endforeach
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    @foreach($estimativas as $estimativa)
+                    <div class="info-box green-bg">
+                        <i class="fa fa-cubes"></i>
+                        <div class="count">{{$estimativa->total}}</div>
+                        <div class="title">Estimativas</div>
+                    </div>
+                    @endforeach
+                    <!--/.info-box-->
+                </div>
+            </div>
+
+                <!--/.col-->
+                <!--/FIM PRIMEIRA LINHA DE INFORMAÇÕES-->
+
+                <!--/INÍCIO SEGUNDA LINHA DE INFORMAÇÕES-->
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2><i class="fa fa-map-marker red"></i><strong>Notas dos Últimos Conhecimentos Avaliados</strong></h2>
+                        </div>
+
+                    {{--INÍCIO GRAFICO 1--}}
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                 </div>
+                                <div class="card-body">
+                                    <canvas id="myChart" ></canvas>
                                 </div>
                             </div>
                         </div>
+                    {{--FIM GRÁFICO 1--}}
+                    </div>
                 </div>
-        </section>
-        </div>
-        </div>
+
+                    {{--INÍCIO LISTA 1--}}
+                <div class="col-lg-6 col-md-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2><i class="fa fa-map-marker red"></i><strong>Conhecimentos Por Unidade</strong></h2>
+                        </div>
+
+                        <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+
+                                     </div>
+                                        <div class="card-body">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th style="text-align:center">OM</th>
+                                                    <th style="text-align:center">Quantidade</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($datas as $data)
+                                                    <tr>
+                                                        <td style="vertical-align: middle">{{$data->nome}}</td>
+                                                        <td style="vertical-align: middle">{{$data->visits}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                    {{--FIM LISTA 1--}}
+            </div>
+
+                <!--/FIM SEGUNDA LINHA DE INFORMAÇÕES-->
+
+                <!--INÍCIO TERCEIRA LINHA DE INFORMAÇÕES-->
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+
+                    <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2><i class="fa fa-map-marker red"></i><strong>Novos Conhecimentos Inseridos Por Dia</strong></h2>
+                            </div>
+
+{{--                         INÍCIO GRAFICO 3--}}
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="line-chart" width="800" height="450"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+{{--                     FIM GRÁFICO 3--}}
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2><i class="fa fa-map-marker red"></i><strong>Indicador de Qualidade da Unidade X</strong></h2>
+                        </div>
+
+                        {{--                    INÍCIO GRAFICO 2--}}
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+{{--                    FIM DO GRÁFICO 2--}}
+                        @foreach($indis as $indi)
+                        <div class="info-box dark-bg">
+                            <i class="fa fa-thumbs-o-up"></i>
+                            <div class="count">{{$indi->total}}</div>
+                            <div class="title">Apreciações</div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+                <!--FIM TERCEIRA LINHA DE INFORMAÇÕES-->
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2><i class="fa fa-map-marker red"></i><strong>Novos Conhecimentos Inseridos Por Dia</strong></h2>
+                        </div>
+                        {{--                    INÍCIO GRAFICO 3--}}
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart3"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        {{--                    FIM DO GRÁFICO 3--}}
+                        @foreach($indis as $indi)
+                            <div class="info-box dark-bg">
+                                <i class="fa fa-thumbs-o-up"></i>
+                                <div class="count">{{$indi->total}}</div>
+                                <div class="title">Apreciações</div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+{{--        </section>--}}
+
         <!-- page end-->
-    </section>
+{{--    </section>--}}
     </section>
 @endsection
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="{{asset('js/chart.js')}}"></script>
+    <script src="{{asset('js/gauge.min.js')}}"></script>
+    <script src="{{asset('js/Gauge.js')}}"></script>
+    <script src="{{asset('js/geral.js')}}"></script>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+@endsection
+
+
+{{--EXEMPLO DE DIV PARA 3 BOTÕES INTERATIVOS--}}
+{{--<div class="col-md-6">--}}
+{{--    <ul class="nav nav-pills align-content-end" id="pills-tab" role="tablist">--}}
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>--}}
+{{--        </li>--}}
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>--}}
+{{--        </li>--}}
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link align-content-end" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>--}}
+{{--        </li>--}}
+{{--    </ul>--}}
+{{--</div>--}}

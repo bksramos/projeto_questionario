@@ -22,4 +22,5 @@ class Resposta extends Model
     {
         return $this->belongsToMany(Alternativa::class);
     }
+
 }

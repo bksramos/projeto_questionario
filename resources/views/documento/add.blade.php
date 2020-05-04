@@ -38,11 +38,11 @@
                                             @csrf
 
                                             <div class="form-group">
-                                              <label for="code">Código do Documento</label><br>
+                                              <label for="code">Número do SIGAD Inteligência</label><br>
                                               <input type="code" name="code" class="form-control" id="code"
-                                                     aria-describedby="docCodeHelp" placeholder="Enter code">
+                                                     aria-describedby="docCodeHelp" placeholder="SIGAD">
                                               <small id="docCodeHelp"
-                                                     class="form-text text-muted">Número do documento que consta no cabeçalho</small><br>
+                                                     class="form-text text-muted">Número do SIGAD Inteligência</small><br>
 
                                               @error('code')
                                                   <small class="text-danger" role='alert'>{{ $message }}</small>
@@ -126,13 +126,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </section>
             </div>
         </div>
         <!-- page end-->
     </section>
-</section>
 @endsection
 
 
