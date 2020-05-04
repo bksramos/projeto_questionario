@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSurveyResponsesTable extends Migration
+class CreateComentariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateSurveyResponsesTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey_responses', function (Blueprint $table) {
+        Schema::create('comentarios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('survey_id');
-            $table->unsignedBigInteger('questao_id');
-            $table->unsignedBigInteger('alternativa_id');
+            $table->unsignedBigInteger('documento_id');
+            $table->string('comentario1');
+            $table->string('comentario2');
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
+
+            $table->foreign('documento_id')->references('id')->on('documentos');
         });
     }
 
@@ -29,6 +33,6 @@ class CreateSurveyResponsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('survey_responses');
+        Schema::dropIfExists('surveys');
     }
 }
